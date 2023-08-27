@@ -18,7 +18,7 @@ const Card = ({ etab, type }) => {
   let path = "/comments/" + etab._id;
   let imgSrc;
   if (etab.image) {
-    imgSrc = etab.image[0];
+    imgSrc = etab.image;
     if (imgSrc && imgSrc.length !== 0) {
       // Extrait le chemin relatif à partir de imgSrc
       const pathIndex = imgSrc.indexOf("/img");

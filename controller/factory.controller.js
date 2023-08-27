@@ -21,6 +21,7 @@ const createOne = async (req, res) => {
     name: req.body.name,
     address: req.body.address,
     description: req.body.description,
+    image :'',
     followers: [],
     likes: [],
     comments: [],
