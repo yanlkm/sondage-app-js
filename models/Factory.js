@@ -16,7 +16,8 @@ const Factory = new mongoose.Schema({
     } ,
     address : {
         type : String, 
-        require : true
+        require : true,
+        unique: true
     }, 
     image : {
         type :  [String]
