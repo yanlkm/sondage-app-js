@@ -3,6 +3,7 @@ const router = express.Router();
 const factory = require('../controller/factory.controller')
 const role = require('../middlewares/user.role')
 const userCooked = require('../middlewares/user.cookie')
+const upload = require('../controller/upload-fac.controller')
 
 //CRUD 
 router.get('/', factory.getAll); 
@@ -24,6 +25,9 @@ router.post('/comment/:id', userCooked.getUserIdbyCookie, factory.commentOne);
 router.delete('/deletecomment/:idfactory/:idcomment', userCooked.getUserIdbyCookie, factory.deleteComment);
 router.patch('/likecomment/:idfactory/:idcomment', userCooked.getUserIdbyCookie, factory.likeComment)
 router.patch('/dislikecomment/:idfactory/:idcomment', userCooked.getUserIdbyCookie, factory.dislikeComment)
+
+//profil pic 
+router.post('/upload/:id',role.checkAdminRole,upload.uploadFactory )
 
 
 module.exports = router

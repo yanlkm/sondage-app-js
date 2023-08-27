@@ -20,7 +20,7 @@ const Factory = new mongoose.Schema({
         unique: true
     }, 
     image : {
-        type :  [String]
+        type :  String
     },
     followers : {
         type : [String] , 

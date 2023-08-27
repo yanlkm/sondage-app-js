@@ -1,3 +1,4 @@
+const { createFacErrors } = require("../errors/auth.error");
 const Factory = require("../models/Factory");
 const User = require("../models/User");
 const UserGoogle = require("../models/UserGoogle");
@@ -28,7 +29,9 @@ const createOne = async (req, res) => {
     const factory = await newFactory.save();
     res.status(201).send({ factory });
   } catch (err) {
-    return res.status(401).send(err);
+    const errors = createFacErrors(err);
+    console.log(err);
+    res.status(200).json(errors);
   }
 };
 
