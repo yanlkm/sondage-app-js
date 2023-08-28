@@ -1,0 +1,56 @@
+.modals-create {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-100%);
+    background: $white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 2px rgba(131, 130, 130, 0.356);
+    overflow: auto;
+    transform: scaleY(0);
+    transform-origin: center;
+    animation: modal .5s forwards;
+    width: 1000px !important;
+
+    @keyframes modal {
+      to {
+        transform: scale(1) translate(-50%);
+      }
+    }
+    h3 {
+        padding: 10px 0 15px;
+      }
+    
+      ul {
+        padding: 10px;
+        display: flex; 
+        justify-content: space-around;
+    
+        li {
+          background: $color-2;
+          color: $white;
+          width: 130px;
+          padding: 10px 0;
+          border-radius: 18px;
+          cursor: pointer;
+          transition: 0.3s;
+          box-shadow: 3px 3px 1px rgba(51, 51, 51, 0.418);
+    
+          &:hover {
+            background: $color-1;
+          }
+        }
+      }
+      .active-btn {
+        background: $color-1;
+      }
+      form {
+        width: 350px;
+        margin: 10px auto 0;
+        padding: 20px;
+    
+      }
+
+
+}

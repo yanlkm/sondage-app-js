@@ -88,11 +88,10 @@ const uploadFactory = async (req, res) => {
           throw new Error("Error on updating image profile account");
         }
         try {
-          await factoryLoaded.findByIdAndUpdate(
-            req.params.id,
-            { $set: updatedRecord },
-            { new: true } // Correction de l'option pour le nouvel objet
-          );
+          console.log('factory loaded : ')
+          console.log(factoryLoaded)
+          Object.assign(factoryLoaded, updatedRecord);
+          await factoryLoaded.save();
         } catch (err) {
           console.log("Update error : " + err);
         }

@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchFacts } from "../reducers/factories.reducers";
 import { isEmpty } from "./Utils";
 import Card from "./Factory/Card";
+import CreateFactory from "./Factory/CreateFactory";
 
 const Thread = () => {
   const etablishment = useSelector((state) => state.etablishment);
+  const user = useSelector((state) => state.user);
   const [loadFac, setLoadFac] = useState(true);
   const dispatch = useDispatch();
 
@@ -26,9 +28,13 @@ const Thread = () => {
         etablishment.data.factory.map((etab) => {
           return <Card etab={etab} key={etab._id} type='null'/>;
         })
+        
       ) : (
         <i className="fas fa-spinner fa-spin"></i>
       )}
+      {
+        user.data && <CreateFactory/> 
+      }
     </div>
   );
 };

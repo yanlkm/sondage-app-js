@@ -49,7 +49,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Erreur interne du serveur." });
 });
 
-// app.get('*', checkUserClassic)
+ app.get('*', checkUserClassic)
 
 app.use('/jwtid', requireAuth, (req, res) => {
   res.status(201).send(res.locals.user._id)
