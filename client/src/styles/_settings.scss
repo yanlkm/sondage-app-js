@@ -95,9 +95,11 @@ a:visited {
 }
 input,
 textarea {
+  margin-top : 10px;
   resize: none;
-  border-radius: 20px;
-  width: 270px ;
+  border-radius: 0px;
+  border : 1px solid rgb(40, 40, 40);
+  border-color: gray;
   font-family: $font-1;
   background: $white;
 }

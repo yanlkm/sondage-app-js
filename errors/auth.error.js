@@ -50,11 +50,11 @@ const updateErrors = (err) => {
 
 const createFacErrors = (err) => {
   let errors = {
-    adress: ""
+    address: ""
   };
 
-  if (err.message.includes("adress")) {
-    errors.adress = "Adresse déjà utilisée ";
+  if (err.message.includes("address")) {
+    errors.address = "Adresse déjà utilisée ";
   }
 
   return errors;

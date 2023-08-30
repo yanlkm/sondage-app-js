@@ -66,9 +66,12 @@ const Card = ({ etab, type }) => {
             )}
             <p>{etab.description}</p>
             <div className="card-img">
-              <img src={imgSrc} alt="" />
+              <img
+                src={imgSrc ? imgSrc : "./img/factory/etablissement1.jpg"}
+                alt=""
+              />
             </div>
-                  
+
             <div className="card-footer">
               <Link to={path}>
                 <div className="comment-icon">
@@ -94,8 +97,8 @@ const Card = ({ etab, type }) => {
               </div>
               <img src="/img/factory/share.png" alt="" />
             </div>
-            <br/>
-            <br/>
+            <br />
+            <br />
             {type === "info" && <Comment etab={etab} />}
           </div>
         </>

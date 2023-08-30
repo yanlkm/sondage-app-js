@@ -165,6 +165,21 @@ export const postComment = createAsyncThunk(
   }
 );
 
+export const createFac = createAsyncThunk("fact/createFac", async (data) => {
+  try {
+    const response = await axios({
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL_BACK}etablishment/create`,
+      withCredentials: true,
+      data,
+    });
+
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+});
+
 const factsSlice = createSlice({
   name: "facts",
   initialState: { data: null, loading: false, error: null },
@@ -269,8 +284,6 @@ const factsSlice = createSlice({
       state.error = null; // Reset any previous error
     });
     builder.addCase(deleteComment.fulfilled, (state, action) => {
-      // console.log('action payload')
-      // console.log(action.payload)
       state.loading = false; // Set loading back to false
       // state.data = action.payload; // Set the user data
     });
@@ -284,11 +297,20 @@ const factsSlice = createSlice({
       state.error = null; // Reset any previous error
     });
     builder.addCase(postComment.fulfilled, (state, action) => {
-      console.log("action payload");
-      console.log(action.payload);
       state.loading = false; // Set loading back to false
     });
     builder.addCase(postComment.rejected, (state, action) => {
+      state.loading = false; // Set loading back to false
+      state.error = action.error.message; // Set the error message
+    });
+    builder.addCase(createFac.pending, (state) => {
+      state.loading = true; // Set loading to true
+      state.error = null; // Reset any previous error
+    });
+    builder.addCase(createFac.fulfilled, (state, action) => {
+      state.loading = false; // Set loading back to false
+    });
+    builder.addCase(createFac.rejected, (state, action) => {
       state.loading = false; // Set loading back to false
       state.error = action.error.message; // Set the error message
     });
