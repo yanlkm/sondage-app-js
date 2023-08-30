@@ -25,7 +25,7 @@ const CreateFactory = () => {
   const autocompleteRef = useRef();
 
   useLoadScript({
-    googleMapsApiKey: "AIzaSyB2KEjBzu3KPidgInsEQ3qOe9KETwslzUk",
+    googleMapsApiKey: "GOOGLE API KEY",
     libraries: placesLibrary,
   });
 
@@ -59,6 +59,11 @@ const CreateFactory = () => {
   //fonction pour desactiver le form
   const closeForm = (e) => {
     e.preventDefault();
+    if (nameError && addressError && descriptionError) {
+        nameError.innerHTML = "";
+        addressError.innerHTML = "";
+        descriptionError.innerHTML = "";
+      }
     setFormIsOn(false);
   };
   const nameError = document.querySelector(".name.error");
@@ -100,6 +105,7 @@ const CreateFactory = () => {
             dispatch(fetchFacts());
             dispatch(fetchUser(user.data._id));
             closeForm(e);
+            setIsOk(false)
           }
 
           nameError.innerHTML = "";
@@ -109,7 +115,7 @@ const CreateFactory = () => {
       }
     }
   };
-  // AIzaSyB2KEjBzu3KPidgInsEQ3qOe9KETwslzUk
+  // 
   return (
     <>
       <div id="gotocreate">
