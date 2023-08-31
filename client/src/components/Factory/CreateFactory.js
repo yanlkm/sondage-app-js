@@ -7,7 +7,6 @@ import { fetchUser } from "../../reducers/user.reducers";
 const placesLibrary = ["places"];
 
 const CreateFactory = () => {
-  console.log(process.env.REACT_APP_API_GOOGLE_MAPS_KEY);
 
   //   const etablishment = useSelector((state) => state.etablishment);
   const dispatch = useDispatch();
@@ -25,7 +24,7 @@ const CreateFactory = () => {
   const autocompleteRef = useRef();
 
   useLoadScript({
-    googleMapsApiKey: "GOOGLE API KEY",
+    googleMapsApiKey: `${process.env.REACT_APP_API_GOOGLE_MAPS_KEY}`,
     libraries: placesLibrary,
   });
 
@@ -60,10 +59,10 @@ const CreateFactory = () => {
   const closeForm = (e) => {
     e.preventDefault();
     if (nameError && addressError && descriptionError) {
-        nameError.innerHTML = "";
-        addressError.innerHTML = "";
-        descriptionError.innerHTML = "";
-      }
+      nameError.innerHTML = "";
+      addressError.innerHTML = "";
+      descriptionError.innerHTML = "";
+    }
     setFormIsOn(false);
   };
   const nameError = document.querySelector(".name.error");
@@ -105,7 +104,7 @@ const CreateFactory = () => {
             dispatch(fetchFacts());
             dispatch(fetchUser(user.data._id));
             closeForm(e);
-            setIsOk(false)
+            setIsOk(false);
           }
 
           nameError.innerHTML = "";
@@ -115,7 +114,7 @@ const CreateFactory = () => {
       }
     }
   };
-  // 
+  //
   return (
     <>
       <div id="gotocreate">
