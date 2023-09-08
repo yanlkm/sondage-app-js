@@ -28,7 +28,7 @@ const Comment = ({ etab }) => {
           displayName: user.data.displayName,
         },
       };
-      if (user.data.googleId) {
+     
         try {
           await dispatch(postComment(record)); // Attendre que le commentaire soit posté
 
@@ -45,10 +45,7 @@ const Comment = ({ etab }) => {
           // Gérer les erreurs si nécessaire
           console.log(error);
         }
-      } else {
-        dispatch(postComment(record));
-        dispatch(fetchFacts());
-      }
+      
 
       setPosted(true);
       setText(""); // Réinitialiser le champ texte après l'envoi
@@ -76,7 +73,7 @@ const Comment = ({ etab }) => {
           const imagePath = users.data.users
             .map((user) => {
               if (user._id === com.commenterId) {
-                console.log(com.commenterId);
+               
                 return user.image.substring(user.image.indexOf("/classics"));
               }
               return null;

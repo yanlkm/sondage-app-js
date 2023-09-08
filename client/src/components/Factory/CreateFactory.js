@@ -7,7 +7,6 @@ import { fetchUser } from "../../reducers/user.reducers";
 const placesLibrary = ["places"];
 
 const CreateFactory = () => {
-
   //   const etablishment = useSelector((state) => state.etablishment);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -58,6 +57,7 @@ const CreateFactory = () => {
   //fonction pour desactiver le form
   const closeForm = (e) => {
     e.preventDefault();
+    console.log('close forM')
     if (nameError && addressError && descriptionError) {
       nameError.innerHTML = "";
       addressError.innerHTML = "";
@@ -74,7 +74,7 @@ const CreateFactory = () => {
     descriptionError.innerHTML = "";
   }
 
-  const createFactory = (e) => {
+  const createFactory = async (e) => {
     e.preventDefault();
 
     if (nameError && addressError && descriptionError) {
@@ -93,18 +93,22 @@ const CreateFactory = () => {
             address: address.trim(),
             description,
           };
-          dispatch(createFac(data)).then((res) => {
-            if (res.payload.address) {
-              addressError.innerHTML = res.payload.address;
-            } else {
-              setIsOk(true);
+          try {
+            await dispatch(createFac(data)).then((res) => {
+              if (res.payload.address) {
+                addressError.innerHTML = res.payload.address;
+              } else {
+                setIsOk(true);
+              }
+            });
+            if (isOk) {
+              await dispatch(fetchFacts());
+              await dispatch(fetchUser(user.data._id));
+              closeForm(e);
+              setIsOk(false);
             }
-          });
-          if (isOk) {
-            dispatch(fetchFacts());
-            dispatch(fetchUser(user.data._id));
-            closeForm(e);
-            setIsOk(false);
+          } catch (err) {
+            console.log(err);
           }
 
           nameError.innerHTML = "";

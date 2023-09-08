@@ -6,6 +6,7 @@ import {
   followFac,
   unfollowFac,
 } from "../../reducers/factories.reducers";
+import { fetchUser } from "../../reducers/user.reducers";
 // import { fetchUser } from "../../reducers/user.reducers";
 
 const FollowHandler = ({ idtofollow, type }) => {
@@ -14,18 +15,37 @@ const FollowHandler = ({ idtofollow, type }) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const handlefollow = (e) => {
+  const handlefollow = async (e) => {
     e.preventDefault();
     if (user.data) {
-      dispatch(followFac(idtofollow));
+      try {
+        await dispatch(followFac(idtofollow));
+        if (type === "trend") {
+          await dispatch(fetchUser(user.data._id));
 
+          // Mettre à jour les commentaires et les établissements après avoir posté le commentaire
+          await dispatch(fetchFacts());
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
-  const handleUnfollow = (e) => {
+  const handleUnfollow = async (e) => {
     e.preventDefault();
 
     if (user.data) {
-      dispatch(unfollowFac(idtofollow));
+      try {
+        await dispatch(unfollowFac(idtofollow));
+        if (type === "trend") {
+          await dispatch(fetchUser(user.data._id));
+
+          // Mettre à jour les commentaires et les établissements après avoir posté le commentaire
+          await dispatch(fetchFacts());
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 

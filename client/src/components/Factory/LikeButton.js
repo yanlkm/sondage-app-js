@@ -17,24 +17,18 @@ const LikeButton = ({ idtofollow, etab }) => {
   const handlelike = async (e) => {
     e.preventDefault();
     if (user.data && etab._id) {
-      if (user.data.googleId) {
-        try {
-          await dispatch(likeFac(idtofollow));
+      try {
+        await dispatch(likeFac(idtofollow));
 
-          // Mettre à jour les données utilisateur
-          await dispatch(fetchUsers());
-          await dispatch(fetchUser(user.data._id));
+        // Mettre à jour les données utilisateur
+        await dispatch(fetchUsers());
+        await dispatch(fetchUser(user.data._id));
 
-          // Mettre à jour les likes et les établissements après avoir like
-          await dispatch(fetchFacts());
-        } catch (error) {
-          // Gérer les erreurs si nécessaire
-          console.log(error);
-        }
-      } else {
-        dispatch(likeFac(idtofollow));
-        dispatch(fetchUsers());
-        dispatch(fetchUser(user.data._id));
+        // Mettre à jour les likes et les établissements après avoir like
+        await dispatch(fetchFacts());
+      } catch (error) {
+        // Gérer les erreurs si nécessaire
+        console.log(error);
       }
     }
   };
@@ -42,24 +36,18 @@ const LikeButton = ({ idtofollow, etab }) => {
   const handleDislike = async (e) => {
     e.preventDefault();
     if (user.data && etab._id) {
-      if (user.data.googleId) {
-        try {
-          await dispatch(unlikeFac(idtofollow));
+      try {
+        await dispatch(unlikeFac(idtofollow));
 
-          // Mettre à jour les données utilisateur
-          await dispatch(fetchUsers());
-          await dispatch(fetchUser(user.data._id));
+        // Mettre à jour les données utilisateur
+        await dispatch(fetchUsers());
+        await dispatch(fetchUser(user.data._id));
 
-          // Mettre à jour les likes et les établissements après avoir like
-          await dispatch(fetchFacts());
-        } catch (error) {
-          // Gérer les erreurs si nécessaire
-          console.log(error);
-        }
-      } else {
-        dispatch(unlikeFac(idtofollow));
-        dispatch(fetchUsers());
-        dispatch(fetchUser(user.data._id));
+        // Mettre à jour les likes et les établissements après avoir like
+        await dispatch(fetchFacts());
+      } catch (error) {
+        // Gérer les erreurs si nécessaire
+        console.log(error);
       }
     }
   };

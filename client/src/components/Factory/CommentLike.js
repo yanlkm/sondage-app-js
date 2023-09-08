@@ -21,24 +21,19 @@ const CommentLike = ({ com, etabId }) => {
         fid: etabId,
         cid: com._id,
       };
-      if (user.data.googleId) {
-        try {
-          await dispatch(likeComment(data));
 
-          // Mettre à jour les données utilisateur
-          await dispatch(fetchUsers());
-          await dispatch(fetchUser(user.data._id));
+      try {
+        await dispatch(likeComment(data));
 
-          // Mettre à jour les likes et les établissements après avoir like
-          await dispatch(fetchFacts());
-        } catch (error) {
-          // Gérer les erreurs si nécessaire
-          console.log(error);
-        }
-      } else {
-        dispatch(likeComment(data));
-        dispatch(fetchUsers());
-        dispatch(fetchUser(user.data._id));
+        // Mettre à jour les données utilisateur
+        await dispatch(fetchUsers());
+        await dispatch(fetchUser(user.data._id));
+
+        // Mettre à jour les likes et les établissements après avoir like
+        await dispatch(fetchFacts());
+      } catch (error) {
+        // Gérer les erreurs si nécessaire
+        console.log(error);
       }
     }
   };
@@ -50,24 +45,19 @@ const CommentLike = ({ com, etabId }) => {
         fid: etabId,
         cid: com._id,
       };
-      if (user.data.googleId) {
-        try {
-          await dispatch(dislikeComment(data));
 
-          // Mettre à jour les données utilisateur
-          await dispatch(fetchUsers());
-          await dispatch(fetchUser(user.data._id));
+      try {
+        await dispatch(dislikeComment(data));
 
-          // Mettre à jour les likes et les établissements après avoir like
-          await dispatch(fetchFacts());
-        } catch (error) {
-          // Gérer les erreurs si nécessaire
-          console.log(error);
-        }
-      } else {
-        dispatch(dislikeComment(data));
-        dispatch(fetchUsers());
-        dispatch(fetchUser(user.data._id));
+        // Mettre à jour les données utilisateur
+        await dispatch(fetchUsers());
+        await dispatch(fetchUser(user.data._id));
+
+        // Mettre à jour les likes et les établissements après avoir like
+        await dispatch(fetchFacts());
+      } catch (error) {
+        // Gérer les erreurs si nécessaire
+        console.log(error);
       }
     }
   };
@@ -85,14 +75,18 @@ const CommentLike = ({ com, etabId }) => {
       {like && user.data && (
         <span onClick={() => setLike(!like)}>
           <button id="combtntrend" onClick={handleDislike}>
-            <img id="combtntrend"  src="/img/factory/liked.svg" alt="Unfollow" />
+            <img id="combtntrend" src="/img/factory/liked.svg" alt="Unfollow" />
           </button>
         </span>
       )}
       {!like && user.data && (
         <span onClick={() => setLike(!like)}>
           <button id="combtntrend" onClick={handlelike}>
-            <img id="combtntrend" src="/img/factory/unliked.svg" alt="Unfollow" />
+            <img
+              id="combtntrend"
+              src="/img/factory/unliked.svg"
+              alt="Unfollow"
+            />
           </button>
         </span>
       )}
